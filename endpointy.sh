@@ -11,7 +11,11 @@
 #// take file structure as well as run checks in the code for certain strings.
 
 
-
+#default values:
+url=unset
+dir="/tmp"
+mode="lightweight"
+branch="main"
 
 Lightweight () {
     echo "fetching git repo (o｡･･｡)o"
@@ -25,6 +29,9 @@ Lightweight () {
     
     echo $heads
     # list the tree
+}
+Heavyweight () {
+    echo "wip"
 }
 Cleanup () {
     echo "Removing repo"
@@ -53,15 +60,17 @@ echo "No valid args supplied"
 fi
 
 case "$1" in 
-    -d | --dir) asd=qwe ; shift ;;
-    -m | --mode) qwe=rty ; shift ;;
+    -d | --dir) dir=$2; shift ;;
+    # mode could be a bool
+    -m | --mode) mode=rty ; shift ;;
     -b | --branch) xy=z ; shift ;;
-    -u | --url) url=$url ; shift ;;
+    -u | --url) url=$2 ; shift ;;
 
     esac
+echo $ARGS
 
 
 # static when testing git clone --depth 1 --no-checkout --filter=tree:0 https://github.com/nilsteampassnet/TeamPass
 #url=https://github.com/nilsteampassnet/TeamPass
-##Lightweight
-#Cleanup
+Lightweight
+Cleanup
